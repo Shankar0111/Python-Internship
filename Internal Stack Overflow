@@ -1,0 +1,59 @@
+questions = []
+answers = {}
+
+def post_question():
+    title = input("Enter the question title: ")
+    body = input("Enter the question body: ")
+    questions.append({'title': title, 'body': body})
+    answers[title] = []
+    print("Question posted successfully!")
+
+def post_answer():
+    title = input("Enter the question title you want to answer: ")
+    if title in answers:
+        body = input("Enter your answer: ")
+        answers[title].append(body)
+        print("Answer posted successfully!")
+    else:
+        print("Question not found!")
+
+def view_questions():
+    print("\nQuestions:")
+    for idx, question in enumerate(questions):
+        print(f"{idx + 1}. {question['title']}")
+
+def view_answers():
+    title = input("Enter the question title to view answers: ")
+    if title in answers:
+        print(f"\nAnswers to '{title}':")
+        for idx, answer in enumerate(answers[title]):
+            print(f"{idx + 1}. {answer}")
+    else:
+        print("Question not found!")
+
+def main():
+    while True:
+        print("\n1. Post a Question")
+        print("2. Post an Answer")
+        print("3. View Questions")
+        print("4. View Answers")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            post_question()
+        elif choice == '2':
+            post_answer()
+        elif choice == '3':
+            view_questions()
+        elif choice == '4':
+            view_answers()
+        elif choice == '5':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice! Please try again.")
+
+if _name_ == "_main_":
+    main()
